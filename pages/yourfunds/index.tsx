@@ -1,22 +1,61 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../../components/Navbar'
 
 function index() {
+    const [funds, setFunds] = useState([{
+        "purpose": "purpose",
+        "fund": "$"
+    },
+    {
+        "purpose": "purpose",
+        "fund": "$"
+    },
+    {
+        "purpose": "purpose",
+        "fund": "$"
+    }
+    ])
+
+    const data = [
+        { id: "1", name: "John Doe" },
+        { id: "2", name: "Victor Wayne" },
+        { id: "4", name: "Jane Doe" },
+    ];
     return (
         <>
             <Navbar />
-            <div className='bg-black'>
-                <div className="lg:w-2/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-                    <h2 className="text-white text-lg font-medium title-font mb-5">Helping Hands</h2>
-                    <div className="relative mb-4">
-                        <label htmlFor="company-id" className="leading-7 text-sm text-gray-400">Company ID</label>
-                        {/* <input value={companyAddress} onChange={(e) => (setCompanyAddress(e.target.value))} type="text" name="company-id" className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" /> */}
+            <div className='bg-gray-900 pt-20 w-full h-full '>
+                <div className=" bg-gray-800 bg-opacity-50 rounded-lg w-6/12 mx-auto p-10">
+                    <h2 className="text-white text-4xl pt-0 mx-auto w-full text-center font-semibold">Your funds</h2>
+                    <div className="relative mb-4 mt-8">
+                        <label htmlFor="c" className="leading-7 text-lg text-gray-400">Your Address</label>
+                        <p className=' px-5 py-2 rounded-lg bg-gray-600 text-white border-none'>cosmos1cdytzhqh2aq6z80t6sxg6slrt7jgzmjvs752wy</p>
                     </div>
-                    <div className="relative mb-4">
-                        <label htmlFor="person-id" className="leading-7 text-sm text-gray-400">Person ID</label>
-                        {/* <input value={personAddress} onChange={(e) => (setPersonAddress(e.target.value))} type="text" name="person-id" className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" /> */}
+                    <div className='bg-gray-700 h-60 overflow-scroll'>
+                        <div className="text-md pt-4 pb-2  text-center">fund for complete the rode work</div>
+                        <p className=' px-5 py-2 rounded-lg bg-yellow-500  border-none w-fit mx-auto '>4,124$</p>
+
+                        <div className="text-md pt-4 pb-2  text-center">fund for complete the rode work</div>
+                        <p className=' px-5 py-2 rounded-lg bg-yellow-500  border-none w-fit mx-auto '>4,124$</p>
+
+                        <div className="text-md pt-4 pb-2  text-center">fund for complete the rode work</div>
+                        <p className=' px-5 py-2 rounded-lg bg-yellow-500  border-none w-fit mx-auto '>4,124$</p>
+
+                        <div className="text-md pt-4 pb-2  text-center">fund for complete the rode work</div>
+                        <p className=' px-5 py-2 rounded-lg bg-yellow-500  border-none w-fit mx-auto '>4,124$</p>
+
+                        <div className="text-md pt-4 pb-2  text-center">fund for complete the rode work</div>
+                        <p className=' px-5 py-2 rounded-lg bg-yellow-500  border-none w-fit mx-auto '>4,124$</p>
+
+                        <div className="text-md pt-4 pb-2  text-center">fund for complete the rode work</div>
+                        <p className=' px-5 py-2 rounded-lg bg-yellow-500  border-none w-fit mx-auto '>4,124$</p>
                     </div>
-                    <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg hover:scale-90 duration-300">Donate</button>
+                    <div className='bg-gray-700 overflow-scroll mt-3 h-fit py-2'>
+                        <div className='flex'>
+                            <input></input>
+                        </div>
+                    </div>
+                    <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg hover:scale-90 duration-300 mt-3">Donate</button>
                     <p className="text-xs mt-3">You have the power to save a Life.</p>
                 </div>
             </div>
