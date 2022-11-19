@@ -64,7 +64,7 @@ function Navbar() {
             <Link href="/register">Register</Link>
           </li>
           <li className="mr-3 lg:mr-6 my-4 text-lg">
-            <Link href="#">Your funds</Link>
+            <Link href="/yourfunds">Your funds</Link>
           </li>
         </div>
 
@@ -83,13 +83,13 @@ function Navbar() {
                   <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Home</a>
                 </li>
                 <li>
-                  <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Donate</a>
+                  <a href="/donate" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Donate</a>
                 </li>
                 <li>
-                  <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Register</a>
+                  <a href="/register" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Register</a>
                 </li>
                 <li>
-                  <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Your funds</a>
+                  <a href="/yourfunds" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Your funds</a>
                 </li>
               </ul>
             </div>
