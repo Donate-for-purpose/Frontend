@@ -61,7 +61,7 @@ function Navbar() {
             <Link href="/donate">Donate</Link>
           </li>
           <li className="mr-3 lg:mr-6 my-4 text-lg">
-            <Link href="#">Register</Link>
+            <Link href="/register">Register</Link>
           </li>
           <li className="mr-3 lg:mr-6 my-4 text-lg">
             <Link href="#">Your funds</Link>
