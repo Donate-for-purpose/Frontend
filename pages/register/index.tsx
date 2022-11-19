@@ -3,7 +3,8 @@ import Navbar from '../../components/Navbar'
 
 function register() {
     const [companyName, setCompanyName]=useState('');
-    const [companyAddress, setCompanyAddress]=useState('');
+    const [companyAddress, setCompanyAddress]=useState('Company address');
+
     return (
         <>
             <Navbar />
@@ -19,7 +20,7 @@ function register() {
 
                         <div className="relative mb-4">
                             <label htmlFor="company-id" className="leading-7 text-sm text-gray-400">company wallet address</label>
-                            <input value={companyAddress} onChange={(e)=>(setCompanyAddress(e.target.value))} type="text" name="company-id" className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                            <p className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out ">{companyAddress}</p>
                         </div>
                         
                         
