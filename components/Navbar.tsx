@@ -55,16 +55,16 @@ function Navbar() {
 
         <div className='hidden sm:contents'>
           <li className="mr-3 lg:mr-6 ml-6  my-4 text-lg">
-            <a href="#">Home</a>
+            <Link href="#">Home</Link>
           </li>
           <li className="mr-3 lg:mr-6 my-4 text-lg">
-            <a href="#">Donate</a>
+            <Link href="/donate">Donate</Link>
           </li>
           <li className="mr-3 lg:mr-6 my-4 text-lg">
-            <a href="#">Register</a>
+            <Link href="#">Register</Link>
           </li>
           <li className="mr-3 lg:mr-6 my-4 text-lg">
-            <a href="#">Your funds</a>
+            <Link href="#">Your funds</Link>
           </li>
         </div>
 
