@@ -15,6 +15,9 @@ function Navbar() {
           <li className="mr-3 lg:mr-6 my-4 text-lg">
             <a href="#">Register</a>
           </li>
+          <li className="mr-3 lg:mr-6 my-4 text-lg">
+            <a href="#">Your funds</a>
+          </li>
         </div>
 
 
