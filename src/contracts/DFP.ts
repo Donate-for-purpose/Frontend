@@ -28,22 +28,38 @@ import type {
   PromiseOrValue,
 } from "./common";
 
+export declare namespace DFP {
+  export type FundsStruct = {
+    provider: PromiseOrValue<string>;
+    funds: PromiseOrValue<BigNumberish>;
+  };
+
+  export type FundsStructOutput = [string, BigNumber] & {
+    provider: string;
+    funds: BigNumber;
+  };
+}
+
 export interface DFPInterface extends utils.Interface {
   functions: {
     "contribute(address,address)": FunctionFragment;
-    "funds(address,address)": FunctionFragment;
+    "funds(address,uint256)": FunctionFragment;
+    "getFunds(address)": FunctionFragment;
     "providers(address)": FunctionFragment;
     "registerUpdateProvider(string)": FunctionFragment;
     "send(address,uint256)": FunctionFragment;
+    "totalFunds()": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
       | "contribute"
       | "funds"
+      | "getFunds"
       | "providers"
       | "registerUpdateProvider"
       | "send"
+      | "totalFunds"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -52,7 +68,11 @@ export interface DFPInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "funds",
-    values: [PromiseOrValue<string>, PromiseOrValue<string>]
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getFunds",
+    values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "providers",
@@ -66,15 +86,21 @@ export interface DFPInterface extends utils.Interface {
     functionFragment: "send",
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
+  encodeFunctionData(
+    functionFragment: "totalFunds",
+    values?: undefined
+  ): string;
 
   decodeFunctionResult(functionFragment: "contribute", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "funds", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "getFunds", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "providers", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "registerUpdateProvider",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "send", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "totalFunds", data: BytesLike): Result;
 
   events: {
     "Contributed(address,address)": EventFragment;
@@ -156,9 +182,14 @@ export interface DFP extends BaseContract {
 
     funds(
       arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<string>,
+      arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
+    ): Promise<[string, BigNumber] & { provider: string; funds: BigNumber }>;
+
+    getFunds(
+      ofAddr: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[DFP.FundsStructOutput[]]>;
 
     providers(
       arg0: PromiseOrValue<string>,
@@ -175,6 +206,8 @@ export interface DFP extends BaseContract {
       amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
+
+    totalFunds(overrides?: CallOverrides): Promise<[BigNumber]>;
   };
 
   contribute(
@@ -185,9 +218,14 @@ export interface DFP extends BaseContract {
 
   funds(
     arg0: PromiseOrValue<string>,
-    arg1: PromiseOrValue<string>,
+    arg1: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
-  ): Promise<BigNumber>;
+  ): Promise<[string, BigNumber] & { provider: string; funds: BigNumber }>;
+
+  getFunds(
+    ofAddr: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<DFP.FundsStructOutput[]>;
 
   providers(
     arg0: PromiseOrValue<string>,
@@ -205,6 +243,8 @@ export interface DFP extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  totalFunds(overrides?: CallOverrides): Promise<BigNumber>;
+
   callStatic: {
     contribute(
       receipent: PromiseOrValue<string>,
@@ -214,9 +254,14 @@ export interface DFP extends BaseContract {
 
     funds(
       arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<string>,
+      arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<[string, BigNumber] & { provider: string; funds: BigNumber }>;
+
+    getFunds(
+      ofAddr: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<DFP.FundsStructOutput[]>;
 
     providers(
       arg0: PromiseOrValue<string>,
@@ -233,6 +278,8 @@ export interface DFP extends BaseContract {
       amount: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
+
+    totalFunds(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   filters: {
@@ -269,7 +316,12 @@ export interface DFP extends BaseContract {
 
     funds(
       arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<string>,
+      arg1: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getFunds(
+      ofAddr: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -288,6 +340,8 @@ export interface DFP extends BaseContract {
       amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
+
+    totalFunds(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -299,7 +353,12 @@ export interface DFP extends BaseContract {
 
     funds(
       arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<string>,
+      arg1: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getFunds(
+      ofAddr: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -318,5 +377,7 @@ export interface DFP extends BaseContract {
       amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
+
+    totalFunds(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }

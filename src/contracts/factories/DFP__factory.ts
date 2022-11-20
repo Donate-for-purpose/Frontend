@@ -96,17 +96,53 @@ const _abi = [
         type: "address",
       },
       {
-        internalType: "address",
+        internalType: "uint256",
         name: "",
-        type: "address",
+        type: "uint256",
       },
     ],
     name: "funds",
     outputs: [
       {
+        internalType: "address",
+        name: "provider",
+        type: "address",
+      },
+      {
         internalType: "uint256",
-        name: "",
+        name: "funds",
         type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "ofAddr",
+        type: "address",
+      },
+    ],
+    name: "getFunds",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "address",
+            name: "provider",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "funds",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct DFP.Funds[]",
+        name: "",
+        type: "tuple[]",
       },
     ],
     stateMutability: "view",
@@ -160,6 +196,19 @@ const _abi = [
     name: "send",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "totalFunds",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
 ];
