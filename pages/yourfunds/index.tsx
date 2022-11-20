@@ -11,6 +11,7 @@ type Funds = {
 function Index() {
   const { data: signer } = useSigner();
   const [funds, setFunds] = useState<Funds[]>([]);
+  const [addr, setAddr] = useState("");
 
   const redeemDonation = async (provider: string, amount: BigNumber) => {
     if (!signer) return;
@@ -25,6 +26,7 @@ function Index() {
   useEffect(() => {
     if (!signer) return;
 
+    signer.getAddress().then(setAddr);
     const dfpContract = DFP__factory.connect(
       process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? "",
       signer
@@ -59,7 +61,7 @@ function Index() {
               Your Address
             </label>
             <p className="overflow-hidden px-5 py-2 rounded-lg bg-gray-600 text-white border-none">
-              cosmos1cdytzhqh2aq6z80t6sxg6slrt7jgzmjvs752wy
+              {addr}
             </p>
           </div>
           <div className="bg-gray-700 h-96 overflow-x-hidden text-white overflow-scroll">
