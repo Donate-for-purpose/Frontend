@@ -19,6 +19,13 @@ a {
   box-sizing: border-box;
 }
 
-
-
-
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #061a2a;
+  border: solid 3px rgb(178, 177, 177);
+  border-radius: 5px;
+}
