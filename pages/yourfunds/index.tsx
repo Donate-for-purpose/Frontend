@@ -1,17 +1,27 @@
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import { useSigner } from "wagmi";
 import Navbar from "../../components/Navbar";
 import { DFP__factory } from "../../src/contracts";
 type Funds = {
   name: string;
-  amount: string;
+  amount: BigNumber;
   provider: string;
 };
 function Index() {
   const { data: signer } = useSigner();
   const [funds, setFunds] = useState<Funds[]>([]);
 
+  const redeemDonation = async (provider: string, amount: BigNumber) => {
+    if (!signer) return;
+
+    const dfpContract = DFP__factory.connect(
+      process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? "",
+      signer
+    );
+
+    await dfpContract.send(provider, amount);
+  };
   useEffect(() => {
     if (!signer) return;
 
@@ -27,7 +37,7 @@ function Index() {
         const fCopy = funds.slice();
         const newF: Funds = {
           name: providerName,
-          amount: ethers.utils.formatUnits(e.funds),
+          amount: e.funds,
           provider: e.provider,
         };
         fCopy.push(newF);
@@ -56,8 +66,14 @@ function Index() {
               return (
                 <div key={i}>
                   <div className="text-md pt-4 pb-2  text-center">{e.name}</div>
-                  <p className=" px-5 py-2 rounded-lg bg-yellow-400 text-black hover:cursor-pointer hover:bg-yellow-500  border-none w-fit mx-auto ">
-                    {e.amount}
+                  <div className="text-md pt-4 pb-2  text-center">
+                    {e.provider}
+                  </div>
+                  <p
+                    onClick={() => redeemDonation(e.provider, e.amount)}
+                    className=" px-5 py-2 rounded-lg bg-yellow-400 text-black hover:cursor-pointer hover:bg-yellow-500  border-none w-fit mx-auto "
+                  >
+                    {ethers.utils.formatUnits(e.amount)}
                   </p>
                 </div>
               );
