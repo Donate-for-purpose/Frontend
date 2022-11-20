@@ -4,11 +4,14 @@ import { useSigner } from "wagmi";
 import Navbar from "../../components/Navbar";
 import { DFP__factory } from "../../src/contracts";
 
+
 function Donate() {
   const [companyAddress, setCompanyAddress] = useState("");
   const [personAddress, setPersonAddress] = useState("");
   const [amount, setAmount] = useState(0);
   const { data: signer } = useSigner();
+  const [loading, setLoading] = useState(false);
+
 
   const contribute = async () => {
     if (!signer) return;
@@ -19,10 +22,18 @@ function Donate() {
     );
 
     const amountBigInt = ethers.utils.parseEther(amount.toString());
+    setLoading(true)
+    try {
+      await dfpContract.contribute(personAddress, companyAddress, {
+        value: amountBigInt,
+      });
+    setLoading(false)
+    } catch (error) {
+    setLoading(false)
+      
+    }
+   
 
-    await dfpContract.contribute(personAddress, companyAddress, {
-      value: amountBigInt,
-    });
   };
   return (
     <>
@@ -31,11 +42,10 @@ function Donate() {
         <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
             <h1 className="title-font font-medium text-3xl text-white">
-              Helping hands are better than praying lips!
+              Contribute to other person!
             </h1>
             <p className="leading-relaxed mt-4">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas
-              dolores unde cumque similique, placeat eos?
+              Enter the wallet address of the fund receiver and wallet address of the a provider where this funds should be use.
             </p>
           </div>
 
@@ -48,7 +58,7 @@ function Donate() {
                 htmlFor="company-id"
                 className="leading-7 text-sm text-gray-400"
               >
-                Company ID
+                Provider wallet address
               </label>
               <input
                 value={companyAddress}
@@ -63,7 +73,7 @@ function Donate() {
                 htmlFor="person-id"
                 className="leading-7 text-sm text-gray-400"
               >
-                Person ID
+                Receiver wallet address
               </label>
               <input
                 value={personAddress}
@@ -95,7 +105,13 @@ function Donate() {
             >
               Donate
             </button>
-            <p className="text-xs mt-3">You have the power to save a Life.</p>
+            {loading ? (
+                <p className=" py-2 px-8 rounded text-slate-300 bg-indigo-500">
+                Loading...
+              </p>
+              ) : (
+            <p className="text-xs mt-3">Your money will be in right hands.</p>
+            )}
           </div>
         </div>
       </section>

@@ -18,7 +18,13 @@ function Register() {
       signer
     );
 
+    setLoading(true)
+    try {
     await dfpContract.registerUpdateProvider(companyName);
+    setLoading(false)
+    } catch (error) {
+    setLoading(false) 
+    }
   };
   return (
     <>
@@ -50,7 +56,7 @@ function Register() {
                 htmlFor="company-id"
                 className="leading-7 text-sm text-gray-400"
               >
-                company wallet address
+                Company wallet address
               </label>
               <p className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out ">
                 {companyAddress}
@@ -62,22 +68,21 @@ function Register() {
               onClick={register}
             >
               {loading ? (
-                <p className=" py-2 px-8 rounded">Register</p>
-              ) : (
                 <p className=" py-2 px-8 rounded text-slate-300 bg-indigo-500">
-                  Loading...
-                </p>
+                Loading...
+              </p>
+              ) : (
+                <p className=" py-2 px-8 rounded">Register</p>
               )}
             </button>
-            <p className="text-xs mt-3">You have the power to save a Life.</p>
+            {/* <p className="text-xs mt-3">You have the power to save a Life.</p> */}
           </div>
           <div className=" mt-8 w-full lg:ml-20 md:w-1/2 sm:w-full  md:pl-12 lg:pr-0 sm:mt-8 md:mt-8">
             <h1 className="title-font font-medium text-3xl text-white">
-              Helping hands are better than praying lips!
+              Register yourself as a provider!
             </h1>
             <p className="leading-relaxed mt-4">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas
-              dolores unde cumque similique, placeat eos?
+              By registering, your organization will be publish.
             </p>
           </div>
         </div>
