@@ -44,6 +44,7 @@ function Index() {
         setFunds(fCopy);
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signer]);
   return (
     <>
