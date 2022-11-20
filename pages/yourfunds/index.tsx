@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useSigner } from "wagmi";
 import Navbar from "../../components/Navbar";
 import { DFP__factory } from "../../src/contracts";
+import YChild from "./ychild/ychild";
 type Funds = {
-  name: string;
   amount: BigNumber;
   provider: string;
 };
@@ -13,16 +13,6 @@ function Index() {
   const [funds, setFunds] = useState<Funds[]>([]);
   const [addr, setAddr] = useState("");
 
-  const redeemDonation = async (provider: string, amount: BigNumber) => {
-    if (!signer) return;
-
-    const dfpContract = DFP__factory.connect(
-      process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? "",
-      signer
-    );
-
-    await dfpContract.send(provider, amount);
-  };
   useEffect(() => {
     if (!signer) return;
 
@@ -34,17 +24,15 @@ function Index() {
 
     dfpContract.getFunds(signer.getAddress()).then((e) => {
       setFunds([]);
-      e.forEach(async (e) => {
-        const providerName = await dfpContract.providers(e.provider);
-        const fCopy = funds.slice();
+      const _funds: Funds[] = [];
+      e.forEach((e) => {
         const newF: Funds = {
-          name: providerName,
           amount: e.funds,
           provider: e.provider,
         };
-        fCopy.push(newF);
-        setFunds(fCopy);
+        _funds.push(newF);
       });
+      setFunds(_funds);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signer]);
@@ -68,16 +56,7 @@ function Index() {
             {funds.map((e, i) => {
               return (
                 <div key={i}>
-                  <div className="text-md pt-4 pb-2  text-center">{e.name}</div>
-                  <div className="text-md pt-4 pb-2  text-center">
-                    {e.provider}
-                  </div>
-                  <p
-                    onClick={() => redeemDonation(e.provider, e.amount)}
-                    className=" px-5 py-2 rounded-lg bg-yellow-400 text-black hover:cursor-pointer hover:bg-yellow-500  border-none w-fit mx-auto "
-                  >
-                    {ethers.utils.formatUnits(e.amount)}
-                  </p>
+                  <YChild amount={e.amount} provider={e.provider}></YChild>
                 </div>
               );
             })}

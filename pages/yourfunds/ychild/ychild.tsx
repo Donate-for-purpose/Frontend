@@ -12,8 +12,10 @@ export default function YChild(p: Props) {
   const [name, setName] = useState("");
   const { data: signer } = useSigner();
 
+  const [amount, setAmount] = useState("");
   useEffect(() => {
     if (!signer) return;
+    setAmount(ethers.utils.formatUnits(p.amount));
     const dfpContract = DFP__factory.connect(
       process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? "",
       signer
@@ -38,7 +40,7 @@ export default function YChild(p: Props) {
         onClick={() => redeemDonation(p.provider, p.amount)}
         className=" px-5 py-2 rounded-lg bg-yellow-400 text-black hover:cursor-pointer hover:bg-yellow-500  border-none w-fit mx-auto "
       >
-        {ethers.utils.formatUnits(p.amount)}
+        {amount}
       </p>
     </>
   );
