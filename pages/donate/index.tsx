@@ -17,6 +17,7 @@ function donate() {
             <h1 className="title-font font-medium text-3xl text-white">Helping hands are better than praying lips!</h1>
             <p className="leading-relaxed mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas dolores unde cumque similique, placeat eos?</p>
           </div>
+          
           <div className="lg:w-2/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
             <h2 className="text-white text-lg font-medium title-font mb-5">Helping Hands</h2>
             <div className="relative mb-4">
