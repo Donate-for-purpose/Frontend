@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar'
 function register() {
     const [companyName, setCompanyName]=useState('');
     const [companyAddress, setCompanyAddress]=useState('Company address');
+    const [loading,setLoading]=useState(false);
 
     return (
         <>
@@ -24,7 +25,7 @@ function register() {
                         </div>
                         
                         
-                        <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register</button>
+                        <button className="text-white bg-indigo-600 border-0  focus:outline-none hover:bg-indigo-700 rounded text-lg">{loading?<p className=' py-2 px-8 rounded'>Register</p>:<p className=' py-2 px-8 rounded text-slate-300 bg-indigo-500'>Loading...</p>}</button>
                         <p className="text-xs mt-3">You have the power to save a Life.</p>
                     </div>
                     <div className=" mt-8 w-full lg:ml-20 md:w-1/2 sm:w-full  md:pl-12 lg:pr-0 sm:mt-8 md:mt-8">
