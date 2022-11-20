@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar'
 function donate() {
   const [companyAddress, setCompanyAddress] = useState('');
   const [personAddress, setPersonAddress] = useState('');
+  const [amount, setAmount] = useState('');
 
 
   return (
@@ -25,6 +26,11 @@ function donate() {
             <div className="relative mb-4">
               <label htmlFor="person-id" className="leading-7 text-sm text-gray-400">Person ID</label>
               <input value={personAddress} onChange={(e) => (setPersonAddress(e.target.value))} type="text" name="person-id" className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+            </div>
+            <div className="relative mb-4">
+              <label htmlFor="person-id" className="leading-7 text-sm text-gray-400">Amount</label>
+              <br/>
+              <input value={amount} onChange={(e) => (setAmount(e.target.value))} type="number" name="person-id" className="w-2/6 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded border border-gray-600 focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
             </div>
             <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Donate</button>
             <p className="text-xs mt-3">You have the power to save a Life.</p>
