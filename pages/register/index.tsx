@@ -24,7 +24,7 @@ function register() {
                         </div>
                         
                         
-                        <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg hover:scale-90 duration-300">Register</button>
+                        <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register</button>
                         <p className="text-xs mt-3">You have the power to save a Life.</p>
                     </div>
                     <div className=" mt-8 w-full lg:ml-20 md:w-1/2 sm:w-full  md:pl-12 lg:pr-0 sm:mt-8 md:mt-8">
